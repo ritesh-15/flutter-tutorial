@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/routes/NavigationRoutes.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +21,9 @@ class LoginPage extends StatelessWidget {
               "assets/images/login_image.png",
               fit: BoxFit.cover,
             ),
-            const Text(
-              "Welcome",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            Text(
+              "Welcome $name",
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
@@ -28,6 +35,10 @@ class LoginPage extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                         label: Text("User Name"), hintText: "Username"),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() => {});
+                    },
                   ),
                   const SizedBox(
                     height: 20,
