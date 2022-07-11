@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+  bool changeButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +52,37 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                      onPressed: () => {
-                            Navigator.pushNamed(
-                                context, NavigationRoutes.homeRoute)
-                          },
-                      child: const Text("Login"),
-                      style: TextButton.styleFrom(
-                          minimumSize: const Size(100, 50)))
+                  InkWell(
+                    child: AnimatedContainer(
+                      width: changeButton ? 50 : 150,
+                      height: 50,
+                      duration: const Duration(seconds: 2),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius:
+                              BorderRadius.circular(changeButton ? 50 : 8)),
+                      child: changeButton
+                          ? const Icon(Icons.done, color: Colors.white)
+                          : const Text(
+                              "Login",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                    ),
+                    onTap: () async {
+                      setState(() => {changeButton = true});
+                      await Future.delayed(Duration(seconds: 2));
+                      Navigator.pushNamed(context, NavigationRoutes.homeRoute);
+                    },
+                  )
+                  // ElevatedButton(
+                  //     child: const Text("Login"),
+                  //     onPressed: () => {
+                  //           Navigator.pushNamed(
+                  //               context, NavigationRoutes.homeRoute)
+                  //         },
+                  //     style: TextButton.styleFrom(
+                  //         minimumSize: const Size(100, 50)))
                 ],
               ),
             )
