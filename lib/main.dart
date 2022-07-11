@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "First App",
-      theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
+      theme: ThemeData(
+          fontFamily: GoogleFonts.lato().fontFamily,
+          appBarTheme: AppBarTheme(color: Colors.white)),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
