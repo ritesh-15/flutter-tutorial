@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/routes/NavigationRoutes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class LoginPage extends StatelessWidget {
             ),
             const Text(
               "Welcome",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
@@ -40,9 +41,13 @@ class LoginPage extends StatelessWidget {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () => {},
-                    child: const Text("Login"),
-                  )
+                      onPressed: () => {
+                            Navigator.pushNamed(
+                                context, NavigationRoutes.homeRoute)
+                          },
+                      child: const Text("Login"),
+                      style: TextButton.styleFrom(
+                          minimumSize: const Size(100, 50)))
                 ],
               ),
             )
