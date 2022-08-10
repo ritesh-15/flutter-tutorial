@@ -1,5 +1,5 @@
 class CatelogModel {
-  static var items = null;
+  static List<Item>? items;
 }
 
 class Item {

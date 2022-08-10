@@ -30,12 +30,40 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: CatelogModel.items != null && CatelogModel.items.length != 0
-            ? ListView.builder(
-                itemCount: CatelogModel.items.length,
+        child: CatelogModel.items != null && CatelogModel.items?.length != 0
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16),
                 itemBuilder: (context, index) {
-                  return ItemWidget(item: CatelogModel.items[index]);
+                  final item = CatelogModel.items![index];
+                  return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      child: GridTile(
+                        header: Container(
+                          decoration:
+                              const BoxDecoration(color: Colors.deepPurple),
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            item.name,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        footer: Container(
+                          decoration: const BoxDecoration(color: Colors.black),
+                          padding: const EdgeInsets.all(12),
+                          child: Text(
+                            "\$${item.price}",
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        child: Image.network(item.image),
+                      ));
                 },
+                itemCount: CatelogModel.items?.length,
               )
             : const Center(
                 child: CircularProgressIndicator(),
