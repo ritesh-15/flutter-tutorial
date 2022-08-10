@@ -2,6 +2,8 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_application/core/store.dart';
+import 'package:flutter_application/models/Cart.dart';
 import 'package:flutter_application/routes/navigation_routes.dart';
 import 'package:flutter_application/widgets/home_widgets/CatelogHeader.dart';
 import 'package:flutter_application/widgets/home_widgets/CatelogList.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_application/models/Catelog.dart';
+
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,12 +31,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final CartModel cart = (VxState.store as MyStore).cart;
+
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() =>
-            {Navigator.pushNamed(context, NavigationRoutes.cartRoute)}),
-        child: const Icon(CupertinoIcons.cart),
+      floatingActionButton: VxBuilder(
+        builder: (context, state, _) {
+          return FloatingActionButton(
+            onPressed: (() =>
+                {Navigator.pushNamed(context, NavigationRoutes.cartRoute)}),
+            child: const Icon(CupertinoIcons.cart),
+          ).badge(
+              count: cart.items.length,
+              color: Colors.red,
+              textStyle: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+              size: 20);
+        },
+        mutations: const {RemoveMutation, AddMutation},
       ),
       body: SafeArea(
         child: Container(
