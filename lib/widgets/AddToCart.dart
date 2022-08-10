@@ -4,23 +4,18 @@ import 'package:flutter_application/models/Cart.dart';
 import 'package:flutter_application/models/Catelog.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class AddToCart extends StatefulWidget {
+class AddToCart extends StatelessWidget {
   final Item catelog;
 
-  const AddToCart({
+  AddToCart({
     super.key,
     required this.catelog,
   });
 
-  @override
-  State<AddToCart> createState() => _AddToCartState();
-}
-
-class _AddToCartState extends State<AddToCart> {
   CartModel cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    bool isInCart = cart.items.contains(widget.catelog);
+    bool isInCart = cart.items.contains(catelog);
 
     return ElevatedButton(
       onPressed: () {
@@ -28,15 +23,14 @@ class _AddToCartState extends State<AddToCart> {
           isInCart = isInCart.toggle();
           CatelogModel model = CatelogModel();
           cart.catelog = model;
-          cart.add(widget.catelog);
-          setState(() {});
+          cart.add(catelog);
         }
       },
       style:
           ButtonStyle(shape: MaterialStateProperty.all(const StadiumBorder())),
       child: isInCart
           ? const Icon(Icons.done)
-          : Icon(CupertinoIcons.cart_badge_plus),
+          : const Icon(CupertinoIcons.cart_badge_plus),
     );
   }
 }

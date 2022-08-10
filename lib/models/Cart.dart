@@ -1,12 +1,6 @@
 import 'package:flutter_application/models/Catelog.dart';
 
 class CartModel {
-  static final cartModel = CartModel._internal();
-
-  CartModel._internal();
-
-  factory CartModel() => cartModel;
-
   late CatelogModel _catelog;
   final List<int> _itemIds = [];
 
