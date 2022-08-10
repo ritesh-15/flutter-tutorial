@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/pages/home_detail_page.dart';
 import 'package:flutter_application/pages/home_page.dart';
 import 'package:flutter_application/pages/login_page.dart';
 import 'package:flutter_application/routes/navigation_routes.dart';
@@ -23,8 +24,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => const HomePage(),
-        NavigationRoutes.loginRoute: (context) => LoginPage(),
-        NavigationRoutes.homeRoute: (context) => HomePage()
+        NavigationRoutes.loginRoute: (context) => const LoginPage(),
+        NavigationRoutes.homeRoute: (context) => const HomePage(),
       },
     );
   }
