@@ -1,5 +1,13 @@
 class CatelogModel {
   static List<Item>? items;
+
+  static Item? findByID(int id) {
+    return items?.firstWhere((element) => element.id == id);
+  }
+
+  static Item? findByPosition(int position) {
+    return items?.elementAt(position);
+  }
 }
 
 class Item {

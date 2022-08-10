@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_application/routes/navigation_routes.dart';
 import 'package:flutter_application/widgets/home_widgets/CatelogHeader.dart';
 import 'package:flutter_application/widgets/home_widgets/CatelogList.dart';
 import "package:velocity_x/velocity_x.dart";
@@ -26,9 +28,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (() =>
+            {Navigator.pushNamed(context, NavigationRoutes.cartRoute)}),
+        child: const Icon(CupertinoIcons.cart),
+      ),
       body: SafeArea(
         child: Container(
-          padding: Vx.m32,
+          padding: Vx.mV32,
           child: Column(
             children: [
               const CatelogHeader(),

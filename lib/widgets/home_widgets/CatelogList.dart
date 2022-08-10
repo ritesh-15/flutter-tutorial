@@ -15,7 +15,7 @@ class CatelogList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: CatelogModel.items?.length,
       itemBuilder: (context, index) {
-        final catelog = CatelogModel.items![index];
+        final catelog = CatelogModel.findByPosition(index)!;
         return InkWell(
             child: CatelogItem(catelog: catelog),
             onTap: () => Navigator.push(
@@ -57,7 +57,7 @@ class CatelogItem extends StatelessWidget {
                 "\$${catelog.price}".text.xl.bold.make(),
                 ElevatedButton(
                   onPressed: () {},
-                  child: "Buy".text.make(),
+                  child: "Add To Cart".text.make(),
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(StadiumBorder())),
                 )

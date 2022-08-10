@@ -18,6 +18,7 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
       ),
@@ -28,10 +29,10 @@ class HomeDetailPage extends StatelessWidget {
           "\$${catelog.price}".text.xl4.bold.make(),
           ElevatedButton(
             onPressed: () {},
-            child: "Buy".text.make(),
             style:
                 ButtonStyle(shape: MaterialStateProperty.all(StadiumBorder())),
-          ).wh(100, 50)
+            child: "Add To Cart".text.make(),
+          ).wh(150, 50)
         ],
       ).p32(),
       body: SafeArea(
@@ -48,10 +49,15 @@ class HomeDetailPage extends StatelessWidget {
               height: 10,
               child: Container(
                 width: context.screenWidth,
+                color: Colors.white,
                 child: Column(
                   children: [
                     catelog.name.text.xl4.bold.make(),
                     catelog.desc.text.xl.textStyle(context.captionStyle).make(),
+                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+                        .text
+                        .make()
+                        .p16()
                   ],
                 ),
               ),
